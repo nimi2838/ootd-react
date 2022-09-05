@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SearchAllData from "../components/SearchAllData";
+
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
 import TestBae from "../TestFile/TestBae";
@@ -20,8 +20,7 @@ const SearchPage = () => {
   return (
     <div>
       <Topbar />
-      <SearchAllData />
-      <TestBae />
+      <TestBae prd={prd} />
       <Footer />
     </div>
   );
