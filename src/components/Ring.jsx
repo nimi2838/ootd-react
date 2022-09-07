@@ -29,7 +29,7 @@ const Woman = ({ prd }) => {
                     }
                     alt=""
                   />
-
+                  npm
                   <div className="ico-view">
                     <i className="fas fa-search" />
                   </div>
