@@ -3,8 +3,9 @@ import axios from "axios";
 import "../styles/Topbar.scss";
 import Login from "./Login";
 import { BsEye } from "react-icons/bs";
-import { BiSearchAlt } from "react-icons/bi";
+
 import { Link, useParams } from "react-router-dom";
+
 // import { Router } from "express";
 
 const Topbar = () => {
@@ -121,7 +122,7 @@ const Topbar = () => {
                 </ul>
               </li>
               <li>
-                <Link to="/RGDP">ACCESSORY</Link>
+                <Link to={`/WGDP/R`}>ACCESSORY</Link>
                 <ul>
                   <li>
                     <Link to={`/`}>RING</Link>
@@ -150,6 +151,7 @@ const Topbar = () => {
             </ul>
           </div>
         </nav>
+
         <Login />
       </header>
     </div>

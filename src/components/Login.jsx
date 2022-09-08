@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import UserIcon from "../components/UserIcon";
 import { useRecoilState } from "recoil";
 import { authenticatedState } from "../recoil/authState";
+import { BiSearchAlt } from "react-icons/bi";
 
 const Login = () => {
   let sessionStorage = window.sessionStorage;
@@ -22,7 +23,9 @@ const Login = () => {
   return (
     <nav className="login">
       {/*  로그인/회원가입 버튼  */}
-
+      <Link to="/SearchPage" className="Search">
+        <BiSearchAlt className="mirror" style={{ margin: "0 20" }} />
+      </Link>
       {authenticated ? (
         <div
           style={{
