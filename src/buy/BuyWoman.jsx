@@ -11,9 +11,9 @@ const BuyWoman = (args) => {
   const userId = sessionStorage.getItem("id");
 
   const [cart, setCart] = useState([]);
-  const [amount, setAmount] = useState("");
-  const [totalprice, setTotalprice] = useState(0);
-  const [countList, setCountList] = useState(0);
+  // const [amount, setAmount] = useState("");
+  const [totalCount, setTotalCount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const params = useParams();
 
@@ -31,10 +31,15 @@ const BuyWoman = (args) => {
 
       setCart(data.data);
       let count = 0;
+      let prdprice = 0;
       data.data.map((item, index) => {
         count += item.amount;
+        prdprice += item.price;
+
+        console.log(prdprice);
       });
-      setCountList(count);
+      setTotalCount(count);
+      setTotalPrice(prdprice);
     };
     getData();
   }, [userId]);
@@ -42,22 +47,15 @@ const BuyWoman = (args) => {
   useEffect(() => {
     const getData = async () => {
       const data = await axios({
-        url: `http://localhost:4000/cartlist`,
+        url: `http://localhost:4000/totalPrice`,
         method: "POST",
         data: { userId },
       });
 
-      // console.log("data console", data.data);
-
-      setCart(data.data);
-      let count = 0;
-      data.data.map((item, index) => {
-        count += item.amount;
-      });
-      setCountList(count);
+      setTotalPrice(data.data.price);
     };
     getData();
-  }, [totalprice]);
+  }, [totalPrice]);
 
   const onToggle = async (userId, prdId) => {
     await axios.patch(`http://localhost:4000/check/${userId}/${prdId}`);
@@ -107,11 +105,10 @@ const BuyWoman = (args) => {
                   item={item}
                   key={index}
                   onToggle={onToggle}
-                  countList={countList}
-                  setCountList={setCountList}
-                  Children={Children}
-                  totalprice={totalprice}
-                  setTotalprice={setTotalprice}
+                  totalCount={totalCount}
+                  setTotalCount={setTotalCount}
+                  totalPrice={totalPrice}
+                  setTotalPrice={setTotalPrice}
                 />
                 // <li cart={cart} key={index}>
                 //   {cart.prdId}
@@ -157,7 +154,7 @@ const BuyWoman = (args) => {
                     fontWeight: "bold",
                   }}
                 >
-                  {countList}
+                  {totalCount}
                 </div>
                 {/* <span className="badge badge-ghost badge-sm"></span> */}
               </td>
@@ -178,7 +175,8 @@ const BuyWoman = (args) => {
                     fontWeight: "bold",
                   }}
                 >
-                  {totalprice}원
+                  {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
                 </div>
                 {/* <span className="badge badge-ghost badge-lg"></span> */}
               </td>

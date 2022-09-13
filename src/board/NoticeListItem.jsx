@@ -6,7 +6,7 @@ import {
   MdModeEditOutline,
 } from "react-icons/md";
 import cn from "classnames";
-import "../styles/board/NoticeListItem.scss";
+// import "../styles/board/NoticeListItem.scss";
 
 const NoticeListItem = ({
   Notice,
@@ -19,19 +19,14 @@ const NoticeListItem = ({
   //console.log(`${id}번 NoticelistItem에서 Notice를 출력함`, Notice);
   return (
     <li className="NoticeListItem">
-<<<<<<< Updated upstream
       <div
         className={cn("checkbox", { checked: checked })}
-=======
-      {/* <div
-        className={cn("checkbox1", { checked: checked })}
->>>>>>> Stashed changes
         onClick={() => {
           onToggle(id);
         }}
       >
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-      </div> */}
+      </div>
       <div className="NoticeNumber">{id}</div>
       <div className="text">{text}</div>
       {/* <div

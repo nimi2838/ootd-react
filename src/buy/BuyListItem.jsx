@@ -1,19 +1,19 @@
 import axios from "axios";
-import React, { Children, useState } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import cn from "classnames";
 import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
 import { FaRegMinusSquare, FaRegPlusSquare } from "react-icons/fa";
+import { constSelector } from "recoil";
 
 const BuyListItem = ({
   item,
   index,
   onToggle,
-  countList,
-  setCountList,
-  Children,
-  totalprice,
-  setTotalprice,
+  totalCount,
+  setTotalCount,
+  totalPrice,
+  setTotalPrice,
 }) => {
   let sessionStorage = window.sessionStorage;
   const userId = sessionStorage.getItem("id");
@@ -22,6 +22,9 @@ const BuyListItem = ({
   const [list, setList] = useState("");
 
   const [count, setCount] = useState(item.amount);
+  const [price, setPrice] = useState(item.price);
+  const [unitPrice, setUnitPrice] = useState(0);
+
   const { checked } = item;
 
   useEffect(() => {
@@ -37,10 +40,9 @@ const BuyListItem = ({
         },
       });
       setList(data.data);
-      // console.log(data.data);
     };
     getData();
-  }, [item, count]);
+  }, [item, count, price]);
 
   return (
     <tr key={index}>
@@ -89,14 +91,20 @@ const BuyListItem = ({
             justifyContent: "center",
           }}
           onClick={async () => {
-            const data = await axios({
-              url: `http://localhost:4000/amount/${item.prdId}`,
-              method: "PATCH",
-              data: { count: count - 1 },
-            });
-            setCount(count - 1);
-            setCountList(countList - 1);
-            setTotalprice(countList * list.prdPrice);
+            if (count <= 1) {
+              alert("최소 수량입니다.");
+            } else {
+              const data = await axios({
+                url: `http://localhost:4000/amount/${item.prdId}`,
+                method: "PATCH",
+                data: { count: count - 1, price: price - list.prdPrice },
+              });
+
+              setCount(count - 1);
+              setTotalCount(totalCount - 1);
+              setPrice(price - list.prdPrice);
+              setTotalPrice(totalPrice - (price - list.prdPrice));
+            }
           }}
         >
           <FaRegMinusSquare />
@@ -125,11 +133,12 @@ const BuyListItem = ({
             const data = await axios({
               url: `http://localhost:4000/amount/${item.prdId}`,
               method: "PATCH",
-              data: { count: count + 1 },
+              data: { count: count + 1, price: price + list.prdPrice },
             });
             setCount(count + 1);
-            setCountList(countList + 1);
-            setTotalprice(count * list.prdPrice);
+            setTotalCount(totalCount + 1);
+            setPrice(price + list.prdPrice);
+            setTotalPrice(totalPrice + (price + list.prdPrice));
           }}
         >
           <FaRegPlusSquare />
@@ -137,7 +146,7 @@ const BuyListItem = ({
         <br />
         {/* <span className="badge badge-ghost badge-sm"></span> */}
       </td>
-      <td>{list.prdPrice * count}</td>
+      <td>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
       {/* <td>{list.prdPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td> */}
       <td>
         <button className="btn btn-ghost btn-mg" style={{ color: "red" }}>

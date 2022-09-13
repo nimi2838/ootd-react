@@ -1,4 +1,4 @@
-import "../styles/board/NoticeTemplate.scss";
+// import "../styles/board/NoticeTemplate.scss";
 import { Link, useParams } from "react-router-dom";
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";

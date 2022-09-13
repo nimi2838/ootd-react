@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MdAdd } from "react-icons/md";
-import "../styles/board/NoticeInsert.scss";
+// import "../styles/board/NoticeInsert.scss";
 
 const NoticeInsert = ({ onInsert }) => {
   const [value, setValue] = useState("");

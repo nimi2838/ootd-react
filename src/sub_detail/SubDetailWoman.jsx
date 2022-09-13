@@ -26,7 +26,6 @@ const SubDetailWoman = ({ prdId, prdName, prdEName, prdPrice, prdImg }) => {
         userId,
       },
     });
-    console.log("구매함");
   };
 
   return (
