@@ -14,6 +14,7 @@ const BuyListItem = ({
   setTotalCount,
   totalPrice,
   setTotalPrice,
+  cartDelete,
 }) => {
   let sessionStorage = window.sessionStorage;
   const userId = sessionStorage.getItem("id");
@@ -43,6 +44,10 @@ const BuyListItem = ({
     };
     getData();
   }, [item, count, price]);
+
+  const onClick = async () => {
+    cartDelete(item.prdId, userId);
+  };
 
   return (
     <tr key={index}>
@@ -146,10 +151,14 @@ const BuyListItem = ({
         <br />
         {/* <span className="badge badge-ghost badge-sm"></span> */}
       </td>
-      <td>{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+      <td>{price}</td>
       {/* <td>{list.prdPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td> */}
       <td>
-        <button className="btn btn-ghost btn-mg" style={{ color: "red" }}>
+        <button
+          className="btn btn-ghost btn-mg"
+          style={{ color: "red" }}
+          onClick={onClick}
+        >
           삭제
         </button>
       </td>

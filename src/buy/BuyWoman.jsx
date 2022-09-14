@@ -27,8 +27,6 @@ const BuyWoman = (args) => {
         data: { userId },
       });
 
-      // console.log("data console", data.data);
-
       setCart(data.data);
       let count = 0;
       let prdprice = 0;
@@ -36,7 +34,7 @@ const BuyWoman = (args) => {
         count += item.amount;
         prdprice += item.price;
 
-        console.log(prdprice);
+        // console.log(prdprice);
       });
       setTotalCount(count);
       setTotalPrice(prdprice);
@@ -66,6 +64,18 @@ const BuyWoman = (args) => {
           : cart
       )
     );
+  };
+
+  const cartDelete = async (prdId, userId) => {
+    const data = await axios({
+      url: `http://localhost:4000/cartDelete`,
+      method: "POST",
+      data: {
+        prdId,
+        userId,
+      },
+    });
+    setCart(data.data);
   };
 
   return (
@@ -109,6 +119,7 @@ const BuyWoman = (args) => {
                   setTotalCount={setTotalCount}
                   totalPrice={totalPrice}
                   setTotalPrice={setTotalPrice}
+                  cartDelete={cartDelete}
                 />
                 // <li cart={cart} key={index}>
                 //   {cart.prdId}
@@ -175,8 +186,7 @@ const BuyWoman = (args) => {
                     fontWeight: "bold",
                   }}
                 >
-                  {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  원
+                  {totalPrice}원
                 </div>
                 {/* <span className="badge badge-ghost badge-lg"></span> */}
               </td>
