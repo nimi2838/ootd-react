@@ -14,6 +14,7 @@ const WSBP = () => {
   const [prdPrice, setPrdPrice] = useState("");
   const [prdid, setPrdid] = useState("");
   const [prdImg, setPrdImg] = useState("");
+  const [prdCheck, setPrdCheck] = useState("");
 
   // useEffect(() => {
   const getData = async () => {
@@ -28,6 +29,7 @@ const WSBP = () => {
     setPrdEName(data.data.prdEName);
     setPrdPrice(data.data.prdPrice);
     setPrdImg(data.data.prdImg);
+    setPrdCheck(data.data.checked);
   };
   getData();
   // }, []);
@@ -41,6 +43,7 @@ const WSBP = () => {
         prdEName={prdEName}
         prdPrice={prdPrice}
         prdImg={prdImg}
+        prdCheck={prdCheck}
       />
       <Footer />
     </div>

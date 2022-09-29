@@ -8,10 +8,12 @@ import cn from "classnames";
 
 const FavoritCheck = ({
   checked,
-  onToggle,
-  // getHeart,
-  // setHeart,
-  // checked, onClick
+  checkToggle,
+  checkInsert,
+  // onToggle,
+  // setAllCount,
+  // allCount,
+  // insertHeart,
 }) => {
   return (
     // <div>
@@ -22,17 +24,26 @@ const FavoritCheck = ({
         <AiFillHeart
           className="fullheart hrt-btn"
           onClick={() => {
-            onToggle();
-            // getHeart();
+            checkToggle();
+            checkInsert();
+
+            // console.log("checked", checked);
+            // setAllCount(allCount - 1);
+            // insertHeart(!checked, allCount - 1);
+            // onToggle();
           }}
         />
       ) : (
         <AiOutlineHeart
           className="voidheart hrt-btn"
           onClick={() => {
-            // insertHeart(checked);
-            onToggle();
-            // getHeart();
+            checkToggle();
+            checkInsert();
+
+            // console.log("checked", checked);
+            // insertHeart(!checked, allCount + 1);
+            // setAllCount(allCount + 1);
+            // onToggle();
           }}
           //  onClick={onClick}
         />

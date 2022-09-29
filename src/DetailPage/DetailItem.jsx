@@ -3,87 +3,62 @@ import { Link } from "react-router-dom";
 import BuyBtn from "../icons/BuyBtn";
 import ShoppingCart from "../icons/ShoppingCart";
 import FavoritCheck from "../icons/FavoritCheck";
-import { useRecoilState } from "recoil";
-import { authenticatedState } from "../recoil/authState";
+// import { useRecoilState } from "recoil";
+// import { authenticatedState } from "../recoil/authState";
 import axios from "axios";
 import "../styles/DetailItem.scss";
 
-const DetailItem = ({ prdId, prdName, prdEName, prdPrice, prdImg }) => {
-  const [authenticated, setAuthenticated] = useRecoilState(authenticatedState);
+const DetailItem = ({
+  prdId,
+  prdName,
+  prdEName,
+  prdPrice,
+  prdImg,
+  prdCheck,
+}) => {
+  // const [authenticated, setAuthenticated] = useRecoilState(authenticatedState);
 
   let sessionStorage = window.sessionStorage;
   const userId = sessionStorage.getItem("id");
 
-  const [heartArr, setHeartArr] = useState([]);
   const [checked, setChecked] = useState(false);
-  const [allHeartCount, setAllHeartCount] = useState(0);
+  const [allCheck, setAllCheck] = useState(0);
 
-  let [allCount, setAllCount] = useState(0);
+  const checkToggle = () => {
+    setChecked((checked) => !checked);
+  };
 
-  // useEffect(() => {
-  //   // getHeart();
-  //   console.log("checked", checked);
-  // }, [checked]);
-  // `
-  //   const getHeart = async () => {
-  //     const data = await axios({
-  //       url: `http://localhost:4000/HeartCount`,
-  //       method: "post",
-  //       data: { prdId },
-  //     });
-  //     setHeartArr(data.data);
-  //     console.log(data.data);
-  //     let count = 0;
-  //     data.data.map((check, index) => {
-  //       count += check.checked;
-  //     });
-
-  //     setAllHeartCount(count);
-  //     console.log("count", count);
-  //   };
-
-  const insertHeart = async (checked) => {
-    // console.log(allCount);
+  const checkInsert = async () => {
+    // console.log(checked);
     const data = await axios({
       url: `http://localhost:4000/addHeart/${userId}/${prdId}`,
-      method: "patch",
-      data: {
-        checked,
-        // allCount
-      },
+      method: "POST",
+      data: { checked },
     });
-
-    // setAllCount(data.data.checked);
-
-    // {
-    //   checked === true || checked === 1
-    //     ? (allCount = allCount + 1)
-    //     : (allCount = allCount - 1);
-    // }
+    setChecked(data.data.checked);
+    // console.log(data.data.checked);
   };
 
-  const onToggle = () => {
-    setChecked((checked) => !checked);
-    insertHeart(!checked);
-    // getHeart();
-    // getHeart();
-    // console.log("checked", checked);
+  const allCheckCount = async () => {
+    console.log("allCheck", allCheck);
+    const data = await axios({
+      url: `http://localhost:4000/allCheck/${prdId}`,
+      method: "POST",
+      data: { allCheck },
+    });
+    // console.log(data.data);
   };
 
-  //   useEffect(() => {
-  //     const getData = async () => {
-  //       const data = await axios({
-  //         url: `http://localhost:4000/heart/${userId}`,
-  //         method: "POST",
-  //         data: { prdId },
-  //       });
-
-  //       setChecked(data.data.checked);
-  //       // console.log(data.data);
-  //     };
-  //     getData();
-  //     getHeart();
-  //   }, [prdId]);`
+  useEffect(() => {
+    if (prdId) {
+      checkInsert();
+      if (prdCheck) {
+        setAllCheck(prdCheck);
+        allCheckCount();
+      }
+      console.log("checkInsert 실행");
+    }
+  }, [prdId, prdCheck]);
 
   return (
     <>
@@ -121,6 +96,13 @@ const DetailItem = ({ prdId, prdName, prdEName, prdPrice, prdImg }) => {
               </div>
             </div>
             <hr />
+            <div
+              onClick={() => {
+                console.log(checked);
+              }}
+            >
+              check
+            </div>
             <div className="price-wrap">
               <h2>
                 Price Info <span>　　　　　가격정보</span>
@@ -153,36 +135,27 @@ const DetailItem = ({ prdId, prdName, prdEName, prdPrice, prdImg }) => {
               </div>
             </div>
             <hr />
+
+            <div
+              onClick={() => {
+                console.log(allCheck);
+              }}
+            >
+              check
+            </div>
             <div className="buy-btn-box flex">
-              <div
-                onClick={() => {
-                  // console.log("heartArr", heartArr);
-                  // insertHeart(checked);
-                }}
-              >
-                {/* {allHeartCount} */}
-              </div>
               <div className="buy">
                 <BuyBtn />
               </div>
-              {/* <div
-                onClick={() => {
-                  console.log("현재 체크값", checked);
-                  console.log("체크된 개수", heartCount);
-                }}
-              >
-                check
-              </div> */}
+
               <div className="cart-heart">
                 <div className="heart">
                   <FavoritCheck
                     checked={checked}
-                    onToggle={onToggle}
-                    // getHeart={getHeart}
-                    // setHeart={setHeart}
-                    // checked={checked} onClick={onClick}
+                    checkToggle={checkToggle}
+                    checkInsert={checkInsert}
                   />
-                  <div className="heartCount">{/* {heartCount} */}</div>
+                  <div className="heartCount">{allCheck}</div>
                 </div>
                 <div className="cart">
                   <ShoppingCart prdId={prdId} />
