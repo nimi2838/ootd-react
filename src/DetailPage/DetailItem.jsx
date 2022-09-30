@@ -29,36 +29,43 @@ const DetailItem = ({
   };
 
   const checkInsert = async () => {
-    // console.log(checked);
+    console.log("allCheck", allCheck);
     const data = await axios({
       url: `http://localhost:4000/addHeart/${userId}/${prdId}`,
       method: "POST",
-      data: { checked },
+      data: { checked, allCheck },
     });
     setChecked(data.data.checked);
+
     // console.log(data.data.checked);
   };
 
-  const allCheckCount = async () => {
-    console.log("allCheck", allCheck);
-    const data = await axios({
-      url: `http://localhost:4000/allCheck/${prdId}`,
-      method: "POST",
-      data: { allCheck },
-    });
-    // console.log(data.data);
-  };
+  // const allCheckCount = async () => {
+  //   console.log("allCheck", allCheck);
+  //   const data = await axios({
+  //     url: `http://localhost:4000/allCheck/${prdId}`,
+  //     method: "POST",
+  //     data: { allCheck },
+  //   });
+  //   // console.log(data.data);
+  // };
 
   useEffect(() => {
     if (prdId) {
-      checkInsert();
-      if (prdCheck) {
-        setAllCheck(prdCheck);
-        allCheckCount();
-      }
-      console.log("checkInsert 실행");
+      const getHeart = async () => {
+        // console.log(checked);
+        const data = await axios({
+          url: `http://localhost:4000/HeartCount/${userId}/${prdId}`,
+          method: "POST",
+        });
+        setChecked(data.data.checked);
+
+        console.log(data.data.checked);
+        console.log("getHeart 실행");
+      };
+      getHeart();
     }
-  }, [prdId, prdCheck]);
+  }, [prdId]);
 
   return (
     <>
@@ -138,10 +145,10 @@ const DetailItem = ({
 
             <div
               onClick={() => {
-                console.log(allCheck);
+                console.log(checked);
               }}
             >
-              check
+              체크 : {checked ? " true" : " false"}
             </div>
             <div className="buy-btn-box flex">
               <div className="buy">
@@ -149,11 +156,19 @@ const DetailItem = ({
               </div>
 
               <div className="cart-heart">
-                <div className="heart">
+                <div
+                  className="heart"
+                  onClick={() => {
+                    checked ? console.log("true") : console.log("false");
+                    checkInsert();
+                  }}
+                >
                   <FavoritCheck
                     checked={checked}
                     checkToggle={checkToggle}
                     checkInsert={checkInsert}
+                    allCheck={allCheck}
+                    setAllCheck={setAllCheck}
                   />
                   <div className="heartCount">{allCheck}</div>
                 </div>
