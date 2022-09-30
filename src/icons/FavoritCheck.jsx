@@ -9,7 +9,8 @@ import cn from "classnames";
 const FavoritCheck = ({
   checked,
   checkToggle,
-  checkInsert,
+  allCheck,
+  setAllCheck,
   // onToggle,
   // setAllCount,
   // allCount,
@@ -25,7 +26,8 @@ const FavoritCheck = ({
           className="fullheart hrt-btn"
           onClick={() => {
             checkToggle();
-            checkInsert();
+            setAllCheck(allCheck - 1);
+            // checkInsert();
 
             // console.log("checked", checked);
             // setAllCount(allCount - 1);
@@ -38,7 +40,8 @@ const FavoritCheck = ({
           className="voidheart hrt-btn"
           onClick={() => {
             checkToggle();
-            checkInsert();
+            setAllCheck(allCheck + 1);
+            // checkInsert();
 
             // console.log("checked", checked);
             // insertHeart(!checked, allCount + 1);
