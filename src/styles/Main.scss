@@ -1,0 +1,63 @@
+.Main-pg {
+  overflow-x: hidden;
+}
+
+.img {
+  position: relative;
+  background-image: url(https://3.bp.blogspot.com/-aLiIe14Mlow/XN0i1QcxyNI/AAAAAAAAHsA/CGomJrXhNW4hMv9X0APq-zF0_wXqVNcoQCLcBGAs/s1600/2019-05-16%2B17%253B27%253B16.jpg?v=24);
+  height: 100vh;
+  background-size: cover;
+}
+.img-cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(28, 28, 28, 0.7);
+  z-index: 1;
+}
+
+.img .content {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  color: white;
+  z-index: 2;
+  text-align: center;
+}
+.con {
+  margin: 10px 20px;
+}
+.con2 {
+  height: 250px;
+}
+.notice {
+  margin-left: 9.9%;
+  margin-top: 20px;
+  display: inline-block;
+  width: 45%;
+  height: auto;
+}
+.notice-top {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.notice-list > li {
+  margin-top: 5px;
+}
+.event {
+  display: inline-block;
+  width: 45%;
+  height: auto;
+}
+.event-top {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.event-list > li {
+  //   color: white;
+  margin-top: 5px;
+}

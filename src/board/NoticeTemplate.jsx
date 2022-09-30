@@ -1,7 +1,9 @@
-// import "../styles/board/NoticeTemplate.scss";
+import "../styles/board/NoticeTemplate.scss";
 import { Link, useParams } from "react-router-dom";
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
+import NoticeList from "./NoticeList";
+import NoticeBoard from "./NoticeBoard";
 
 function NoticeTemplate({ children }) {
   return (
@@ -14,12 +16,12 @@ function NoticeTemplate({ children }) {
 
       <section className="Notice-Template-btn">
         <Link to={`/NoticePost`}>
-          <button class="btn">공지사항 작성</button>
+          <button className="btn">공지사항 작성</button>
         </Link>
 
-        <a href="javascript:history.back();">
-          <button class="btn">돌아가기</button>
-        </a>
+        <Link to={`/`}>
+          <button className="btn">돌아가기</button>
+        </Link>
       </section>
       <Footer />
     </>

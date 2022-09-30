@@ -1,22 +1,43 @@
 .company {
-  margin-top: 100px;
   width: 100%;
   height: auto;
-  margin-left: 20px;
-  background-color: black;
+  overflow-x: hidden;
+  background-color: #1c1c1c;
+  display: flex;
+  padding: 16px 30px;
 }
-.company > ul {
-  color: white;
-}
-.company > ul > li:first-child {
+
+.company > h3 {
   font-weight: bold;
+  display: flex;
   font-size: 1.5rem;
+  flex-direction: row;
+  width: 30%;
+  justify-content: end;
 }
+
+.company > ul {
+  width: 100%;
+  color: white;
+  margin-left: 20px;
+  width: 50%;
+  margin-left: 10%;
+  // display: flex;
+}
+
 .company > ul > li {
   margin-top: 5px;
   font-size: 12px;
+  display: flex;
+  flex-direction: column;
 }
+
+// .company > ul > li {
+//   margin-top: 5px;
+//   font-size: 12px;
+// }
+
 .company > ul > li:last-child {
-  text-align: center;
   font-size: 1rem;
+  margin-top: 9px;
 }

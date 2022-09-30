@@ -1,39 +1,36 @@
 import React from "react";
+import { Footer } from "react-daisyui";
+import { Link } from "react-router-dom";
+import Topbar from "../components/Topbar";
+
 import "../styles/board/NoticeContent.scss";
+import NoticeList from "./NoticeList";
 
-const NoticeContent = () => {
+const NoticeContent = ({ Notice }) => {
+  // const { id, reg_date, title, contents } = Notice;
   return (
-    <div className="notice-content">
-      <div className="notice-title">공지사항 작성</div>
-      <nav className="notice-title-input">
-        <div className="title-name">제목</div>
-        <input
-          className="input-title"
-          type="text"
-          style={{ width: "1000px", height: "100px" }}
-          placeholder="제목을 입력하세요."
-        />
-      </nav>
+    <>
+      <Topbar />
+      <article className="notice-content">
+        <div className="notice-main-title">공지사항</div>
+        <div className="notice-date">date</div>
+        <nav className="numANDtitle">
+          <div className="notice-content-num">NUM</div>
+          <div className="notice-content-title">title</div>
+        </nav>
+        <div className="notice-content-text">content</div>
+        <nav className="notice-content-btn">
+          <button className="btn mod-btn">수정</button>
 
-      <nav className="notice-content-input">
-        <div className="content-name">내용</div>
-        <textarea
-          className="input-content"
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          style={{ width: "1000px", height: "500px" }}
-          placeholder="내용을 입력하세요."
-        ></textarea>
-      </nav>
-      <article className="notice-content-btn">
-        {/* <div className="notice-content-btn2"> */}
-        <button class="btn">등록</button>
-        <button class="btn">돌아가기</button>
-        {/* </div> */}
+          <button className="btn del-btn">삭제</button>
+
+          <Link to={`/NoticeList`}>
+            <button className="btn list-btn">목록</button>
+          </Link>
+        </nav>
       </article>
-    </div>
+      <Footer />
+    </>
   );
 };
 

@@ -1,0 +1,66 @@
+.NoticeListItem {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom-width: 0.5px;
+  border-color: black;
+}
+
+.NoticeNumber {
+  margin-left: 1rem;
+  font-weight: bold;
+  width: 2%;
+}
+
+.NoticeListItem-virtualized {
+  & + & {
+    border-top: 1px solid #dee2e6;
+  }
+  &:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+}
+.checkbox {
+  cursor: pointer;
+  flex: 0.02;
+  display: block;
+  align-items: center;
+  svg {
+    font-size: 1.5rem;
+  }
+
+  &.checked {
+    svg {
+      color: gray;
+    }
+  }
+}
+
+.NoticeText {
+  cursor: pointer;
+  flex: 1;
+  display: block;
+  margin-left: 0.5rem;
+}
+
+.NoticeDate {
+  border: 5px solid red;
+}
+
+.NoticeRemove {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #e84118;
+  cursor: pointer;
+  &:hover {
+    color: #ff7f5f;
+  }
+}
+.NoticeEdit {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}

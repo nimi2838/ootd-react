@@ -1,16 +1,11 @@
 import React from "react";
-import "../styles/MainPG.scss";
+import "../styles/Main.scss";
 import { Link } from "react-router-dom";
 
 const NewmainPG = () => {
   return (
-    <div>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-      />
-
-      <section>
+    <div className="Main-pg">
+      <section className="main-img">
         <div className="img">
           <div className="content">
             <h1>Welcome to</h1>
@@ -24,7 +19,7 @@ const NewmainPG = () => {
         <div className="notice">
           <ul className="notice-top">
             <li>
-              <Link to={`/`}>NOTICE</Link>
+              <Link to={`/NoticeBoard`}>NOTICE</Link>
             </li>
           </ul>
           <ul className="notice-list">

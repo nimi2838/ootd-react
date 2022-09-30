@@ -6,7 +6,7 @@ import {
   MdModeEditOutline,
 } from "react-icons/md";
 import cn from "classnames";
-// import "../styles/board/NoticeListItem.scss";
+import "../styles/board/NoticeListItem.scss";
 
 const NoticeListItem = ({
   Notice,
@@ -15,22 +15,25 @@ const NoticeListItem = ({
   onInsertToggle,
   setSelectedNotice,
 }) => {
-  const { id, text, checked } = Notice;
-  //console.log(`${id}번 NoticelistItem에서 Notice를 출력함`, Notice);
+  const { checked, id, text, reg_date } = Notice;
+
+  // console.log(`${id}번 NoticelistItem에서 Notice를 출력함`, Notice);
   return (
     <li className="NoticeListItem">
       <div
-        className={cn("checkbox", { checked: checked })}
+        className={("checkbox", { checked: checked })}
         onClick={() => {
           onToggle(id);
         }}
+        style={{ fontSize: "1.5rem" }}
       >
         {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
       </div>
       <div className="NoticeNumber">{id}</div>
-      <div className="text">{text}</div>
+      <div className="NoticeText">{text}</div>
+      <div className="NoticeDate">{reg_date.substring(0, 10)}</div>
       {/* <div
-        className="edit"
+        className="NoticeEdit"
         onClick={() => {
           onInsertToggle();
           setSelectedNotice((prev) => Notice);
@@ -39,14 +42,13 @@ const NoticeListItem = ({
         <MdModeEditOutline />
       </div>
       <div
-        className="remove"
+        className="NoticeRemove"
         onClick={() => {
           onRemove(id);
         }}
       >
         <MdRemoveCircleOutline />
       </div> */}
-      <div className="NoticeListDate"></div>
     </li>
   );
 };

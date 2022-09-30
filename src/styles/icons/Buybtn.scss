@@ -1,0 +1,15 @@
+.sell {
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  padding: 5px 100px;
+}
+
+.sell > .won {
+  font-size: 30px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+}

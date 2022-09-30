@@ -28,7 +28,7 @@ const NoticeEdit = ({ selectedNotice, onUpdate, onInsertToggle }) => {
       }}
     >
       <form onSubmit={onSubmit} className="noticeedit__insert">
-        <h2>수정하기</h2>
+        <h2 className="Notice-edit">수정하기</h2>
         <input
           onChange={onChange}
           value={value}

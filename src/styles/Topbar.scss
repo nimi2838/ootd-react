@@ -1,40 +1,53 @@
-/* 노멀라이즈 시작 */
-body,
-html {
-  overflow-x: hidden;
-  margin-top: 7.5vh;
-}
 body,
 ul,
 li {
   margin: 0;
   padding: 0;
-  list-style: none;
+  list-style: 0;
 }
 a {
   color: inherit;
   text-decoration: none;
 }
-/* 노말라이즈 끝 */
-
-/* top-bar 시작 */
-header {
+// 탑바 시작
+.top-bar-sub {
+  overflow-x: hidden;
+  margin-bottom: 6vh;
+  width: 100%;
+}
+.top-header {
   z-index: 999;
   position: fixed;
   top: 0;
   width: 100%;
-  height: 5.3vh;
+  height: 6vh;
   padding: 1rem;
   display: flex;
   color: white;
-  background-color: black;
+  background-color: #1c1c1c;
   font-weight: bold;
   align-items: center;
+  justify-content: space-around;
 }
 
-/* OOTD LOGO부분 */
-header > h1 > div {
-  margin-top: -50px;
+.top-header > .topbar_title {
+  // justify-content: start;
+  width: 20%;
+}
+
+.top-header > .top-bar {
+  display: flex;
+  width: 60%;
+  justify-content: center;
+}
+
+// .top-header > * {
+//   width: 33.3%;
+// }
+
+//OOTP 로고 부분
+.top-header > h1 > .move-home {
+  // margin-top: -50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,78 +56,52 @@ header > h1 > div {
   width: 150px;
   font-size: 1.5rem;
 }
-
-/* 메뉴박스  */
+// 메뉴박스
 .menu-box-1 > ul {
-  width: 900px;
   display: flex;
-  padding: 0 20px;
-  margin-left: 200px;
+  min-width: none;
 }
-
-/* 1차 메뉴 아이템 */
+// 1 차 메뉴 아이템
 .menu-box-1 > ul > li {
   display: inline-block;
   flex-wrap: nowrap;
 }
-
-/* 1, 2차 메뉴 아이템에 relative를 줌 */
+//1,2차 메뉴아이템
 .top-bar ul > li {
   position: relative;
 }
-
-/* 1차 메뉴 아이템 : TEXT */
+// 1차 메뉴아이템 텍스트
 .menu-box-1 ul > li > a {
   display: block;
   padding: 10px;
   color: inherit;
-  background-color: black;
+  background-color: #1c1c1c;
   font-size: 1.3rem;
   width: 200px;
-
-  /* 3차메뉴 아이템이 아래로 표시 되는 것을 제대로 표시하기 */
-  white-space: nowrap;
 }
-
-/* 1차 메뉴 hover시 색상 변경 */
-.menu-box-1 ul > li:hover > a {
-  background-color: white;
-  color: black;
-}
-
-/* 2, 3차 메뉴 숨기기, position 설정*/
+//2,3차 메뉴 숨기기
 .menu-box-1 > ul ul {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
 }
-
-/* 1차 메뉴에 hover시 2차 메뉴 표시 */
+// 1차 메뉴 호버시 색상 변경
+.menu-box-1 ul > li:hover > a {
+  background-color: white;
+  color: #1c1c1c;
+}
+// 1차 메뉴에 호버시 2차메뉴 표시
 .menu-box-1 ul > li:hover > ul {
   display: block;
 }
-
-/* 3차 메뉴 아이템 */
 .menu-box-1 > ul ul ul {
   top: 0;
   left: 100%;
 }
-
-/* login button */
-
 .login {
   display: flex;
   align-items: center;
-  margin-left: auto;
+  justify-content: end;
+  width: 20%;
 }
-
-/* login button end*/
-
-.Search {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-/* top bar end */

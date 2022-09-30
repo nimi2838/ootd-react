@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import UserIcon from "../components/UserIcon";
+import UserIcon from "../icons/UserIcon";
 import { useRecoilState } from "recoil";
 import { authenticatedState } from "../recoil/authState";
 import { BiSearchAlt } from "react-icons/bi";
+import { useEffect } from "react";
 
 const Login = () => {
   let sessionStorage = window.sessionStorage;
@@ -20,10 +21,14 @@ const Login = () => {
     setPw(e.target.value);
   };
 
+  // useEffect(() => {
+  //   setAuthenticated(false);
+  // }, []);
+
   return (
     <nav className="login">
       {/*  로그인/회원가입 버튼  */}
-      <Link to="/SearchPage" className="Search">
+      <Link to="/SearchResultPage" className="Search">
         <BiSearchAlt className="mirror" style={{ margin: "0 20" }} />
       </Link>
       {authenticated ? (
@@ -55,7 +60,7 @@ const Login = () => {
         <div>
           <input
             type="text"
-            placeholder="id"
+            placeholder="ID"
             name="id"
             value={id}
             onChange={idChange}
@@ -107,7 +112,7 @@ const Login = () => {
             Login
           </button>
           <span>&nbsp;</span>
-          <Link to="/Join">
+          <Link to="/JoinPage">
             <button>JOIN</button>
           </Link>
         </div>

@@ -58,43 +58,46 @@ const Join = (args) => {
   };
 
   return (
-    <body style={{ height: "100vh" }}>
-      <div>
-        <Topbar />
+    <div className="join_box">
+      <div className="align-center">
         <h1>회원가입</h1>
 
-        <form name="joinForm" className="joinForm" onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="id"
-            value={id}
-            onChange={joinIdChange}
-            placeholder="아이디를 입력하세요"
-          />
-          <input
-            type="text"
-            name="pw"
-            value={pw}
-            onChange={joinPwChange}
-            placeholder="비밀번호를 입력하세요"
-          />
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={joinNameChange}
-            placeholder="이름을 입력하세요"
-          />
-          <button class="btn btn-secondary" type="submit" onClick={joinbtn}>
-            회원가입
-          </button>
-          {/* <button className="btn" type="submit" onClick={joinbtn}>
+        <div className="form_box">
+          <form name="joinForm" className="joinForm" onSubmit={onSubmit}>
+            <input
+              type="text"
+              name="id"
+              className="joininput"
+              value={id}
+              onChange={joinIdChange}
+              placeholder="아이디를 입력하세요"
+            />
+            <input
+              type="text"
+              name="pw"
+              className="joininput"
+              value={pw}
+              onChange={joinPwChange}
+              placeholder="비밀번호를 입력하세요"
+            />
+            <input
+              type="text"
+              name="name"
+              className="joininput"
+              value={name}
+              onChange={joinNameChange}
+              placeholder="이름을 입력하세요"
+            />
+            <button className="btn btn-ghost" type="submit" onClick={joinbtn}>
+              회원가입
+            </button>
+            {/* <button className="btn" type="submit" onClick={joinbtn}>
           회원가입
         </button> */}
-        </form>
+          </form>
+        </div>
       </div>
-      <Footer />
-    </body>
+    </div>
   );
 };
 
